@@ -1,22 +1,11 @@
 import {
-	useMemo,
 	type FC,
 	useEffect,
 	type ComponentPropsWithoutRef,
 	useState,
 } from "react";
-import type { Snip, Tag } from "~lib/types";
-import Topbar from "./Topbar";
-import YtSnip from "./Message";
-import {
-	useAllSnipsStore,
-	useContentScriptStore,
-	useSnipsStore,
-} from "~stores/sniptube";
-import { getSnips } from "~lib/storage";
-import EmptyChat from "./EmptyChat";
-import { filterAndSortSnips } from "~lib/utils";
-import Message from "./Message";
+import type { Snip } from "~lib/types";
+import { useContentScriptStore, useSnipsStore } from "~stores/sniptube";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -38,21 +27,11 @@ type FormInputs = {
 const Chat: FC<Props> = (props) => {
 	const { currentUrl, className } = props;
 
-	const snips: Snip[] = useSnipsStore((state) => state.snips);
-	const setCurrentVideoSnips = useSnipsStore((state) => state.setSnips);
-	const inGithubRepo = useContentScriptStore((state) => state.inGithubRepo);
-	const setInGithubRepo = useContentScriptStore(
-		(state) => state.setInGithubRepo,
-	);
-	const [sortBy, selectedTags] = useSnipsStore((state) => [
-		state.sortBy,
-		state.selectedTags,
-	]);
 	const [messages, setMessages] = useState<ChatMessage[]>([]);
 	const { register, handleSubmit, reset } = useForm<FormInputs>();
 
 	useEffect(() => {
-		getTheDiff(currentUrl).then((response) => {
+		getTheDiff().then((response) => {
 			console.log("Response from getTheDiff:", response);
 			for (const data of response) {
 				const userMessage: ChatMessage = {
@@ -72,7 +51,7 @@ const Chat: FC<Props> = (props) => {
 				]);
 			}
 		});
-	}, [currentUrl]);
+	}, []);
 
 	const sendMessage: SubmitHandler<FormInputs> = async (data) => {
 		console.log("Form data:", data);

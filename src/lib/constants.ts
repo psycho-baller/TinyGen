@@ -1,6 +1,6 @@
 export const URL =
 	process.env.NODE_ENV === "production"
-		? `https://www.sniptube.vercel.app/api`
+		? `https://www.tinygen.vercel.app/api/v1`
 		: "http://localhost:3000/api/v1";
 
 export const sortByOptions = [

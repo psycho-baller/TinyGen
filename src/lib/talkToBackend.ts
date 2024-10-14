@@ -44,7 +44,7 @@ type SupabaseData = {
 	created_at: string;
 };
 
-export const getTheDiff = async (repoUrl: string) => {
+export const getTheDiff = async () => {
 	try {
 		const res = await fetch(`${URL}/diff`, {
 			method: "GET",
