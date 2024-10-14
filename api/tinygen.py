@@ -5,7 +5,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers import JsonOutputParser
 
 
-# from api.db import insert_to_supabase
+from api.db import insert_to_supabase
 from api.github import GithubFileLoader
 
 from dotenv import load_dotenv
@@ -19,7 +19,7 @@ ACCESS_TOKEN = os.getenv("OPENAI_API_KEY")
 class TinyGen:
     def __init__(self):
         self.llm = ChatOpenAI(
-            model_name="gpt-4-0125-preview",
+            model_name="gpt-4o",
             max_tokens=4096,
             temperature=0,
             streaming=True,
@@ -30,18 +30,21 @@ class TinyGen:
 
         loader = GithubFileLoader(repo_url)
 
-        yield "Loading files from the repository...\n"
+        print("Loading files from the repository...\n")
         files = loader.load()
+        print("Files loaded successfully!\n\n")
         self.repo_files = []
         for file in files:
             self.repo_files.append(file)
-        yield "Files loaded successfully!\n\n"
+        print("Files loaded successfully!\n\n")
         self.prompt = prompt
 
         # summarize files
-        yield f"Summarizing files...\nMaking a batch call to summarize file chain for {len(self.repo_files)} files...\n"
+        print(
+            f"Summarizing files...\nMaking a batch call to summarize file chain for {len(self.repo_files)} files...\n"
+        )
         self.repo_files_with_summaries = self.summarize_files(self.repo_files)
-        yield "Done summarizing all files!\n\n"
+        print("Done summarizing all files!\n\n")
 
         # Initialize rest of the chains
         # Four Chain = identify relevant files -> code conversion -> generate diff -> reflection on diff)
@@ -53,26 +56,33 @@ class TinyGen:
             include_types=["chat_model"],
         )
 
+        generated_text = ""
+
         async for event in response:
             kind = event["event"]
             chain = event["name"]
 
-            if kind == "on_chat_model_stream":
-                yield str(event["data"]["chunk"].content)
+            if kind == "on_chat_model_stream" and chain == "reflection_chain":
+                chunk_content = str(event["data"]["chunk"].content)
+                generated_text += chunk_content  # Accumulate the generated text
+                yield chunk_content  # Yield the chunk to the client
             elif (
                 kind == "on_chat_model_start"
                 and chain == "identify_relevant_files_chain"
             ):
-                yield str("##### Starting Identify Relevant Files Chain...\n\n")
+                print("##### Starting Identify Relevant Files Chain...\n\n")
             elif kind == "on_chat_model_start" and chain == "code_conversion_chain":
-                yield str("##### Starting Code Conversion Chain...\n\n")
+                print("##### Starting Code Conversion Chain...\n\n")
             elif kind == "on_chat_model_start" and chain == "generate_diff_chain":
-                yield str("\n\n##### Starting Generate Diff Chain...\n\n")
+                print("\n\n##### Starting Generate Diff Chain...\n\n")
             elif kind == "on_chat_model_start" and chain == "reflection_chain":
-                yield str("\n\n##### Starting Reflection Chain...\n\n")
+                print("\n\n##### Starting Reflection Chain...\n\n")
 
         # Insert Data to supabase after all streaming is finished!
-        # insert_to_supabase(prompt, repo_url, response, "tiny_gen_one_calls")
+
+        response = insert_to_supabase(
+            prompt, loader.username, loader.repo_id, generated_text
+        )
 
     def summarize_files(self, repo_files):
         ############
@@ -305,8 +315,6 @@ system_prompt = """
 - As a programming maestro, you possess a broad spectrum of coding abilities, ready to tackle diverse programming challenges.
 - Your areas of expertise include project design, efficient code structuring with precision and clarity.
 """
-
-from typing import Union, List, Dict
 
 
 def get_file(file_paths: Union[List[str], str], repo_files: List[Dict[str, str]]):
