@@ -1,6 +1,4 @@
-import { useEffect, type FC, useMemo, useState } from "react";
-import Tabs from "./components/Tabs";
-import AllSnips from "./components/AllSnips";
+import { useEffect, type FC, useState } from "react";
 import "src/styles/tailwind.css";
 import { useAllSnipsStore, useContentScriptStore } from "~stores/sniptube";
 import type { Tag, Snip } from "~lib/types";

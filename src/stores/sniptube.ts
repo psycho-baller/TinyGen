@@ -36,13 +36,13 @@ type contentScriptState = {
   snipNote: string;
   snipTags: string[];
   snipLength: number;
-  inYoutube: boolean;
+  inGithubRepo: boolean;
   cancelSnipRequest: boolean;
 };
 
 type contentScriptActions = {
   setShowAddSnipDetailsForm: (showAddSnipDetailsForm: boolean) => void;
-  setInYoutube: (inYoutube: boolean) => void;
+  setInGithubRepo: (inGithubRepo: boolean) => void;
   setSnipLength: (snipLength: number) => void;
   setCancelSnipRequest: (cancelSnipRequest: boolean) => void;
 };
@@ -115,8 +115,8 @@ export const useContentScriptStore = createWithEqualityFn<contentScriptState & c
     snipTags: [],
     snipLength: 30,
     setSnipLength: (snipLength) => set({ snipLength }),
-    inYoutube: false,
-    setInYoutube: (inYoutube) => set({ inYoutube }),
+    inGithubRepo: false,
+    setInGithubRepo: (inGithubRepo) => set({ inGithubRepo }),
     cancelSnipRequest: false,
     setCancelSnipRequest: (cancelSnipRequest) => set({ cancelSnipRequest }),
   })),

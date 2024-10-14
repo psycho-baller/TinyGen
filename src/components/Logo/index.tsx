@@ -57,7 +57,7 @@ const LogoComponent = (props: SVGProps<SVGSVGElement>) => {
 					textAnchor="middle"
 					fill="black"
 					fontSize="25"
-					fontWeight={800}
+					fontWeight={700}
 				>
 					TinyGen
 				</text>
@@ -121,7 +121,7 @@ const LogoComponent = (props: SVGProps<SVGSVGElement>) => {
 					textAnchor="middle"
 					fill="white"
 					fontSize="25"
-					fontWeight={800}
+					fontWeight={700}
 				>
 					TinyGen
 				</text>
