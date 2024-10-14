@@ -63,7 +63,11 @@ const Popup: FC<Props> = () => {
 			{inGithubRepo ? (
 				<Chat currentUrl={currentUrl} />
 			) : (
-				<div>not in github</div>
+				<main className="flex flex-col items-center justify-center my-auto">
+					<h1 className="text-2xl font-semibold">
+						Visit any GitHub repository to get started!
+					</h1>
+				</main>
 			)}
 			<footer className="flex justify-center w-full mb-2 text-sm text-gray-500 dark:text-gray-400 gap-x-1">
 				Made with ❤️ by

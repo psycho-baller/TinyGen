@@ -10,6 +10,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { genTheDiff, getTheDiff } from "~lib/talkToBackend";
+import EmptyChat from "./EmptyChat";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
 	currentUrl: string;
@@ -123,6 +124,7 @@ const Chat: FC<Props> = (props) => {
 						</div>
 					</div>
 				))}
+				{messages.length === 0 && <EmptyChat />}
 			</div>
 			<form
 				onSubmit={handleSubmit(sendMessage)}
@@ -140,17 +142,6 @@ const Chat: FC<Props> = (props) => {
 					Send
 				</button>
 			</form>
-			{/* {snips.length > 0 ? (
-				<ul className="">
-					{snips.map(
-						(snip: Snip, i): JSX.Element => (
-							<Message key={i} snip={snip} />
-						),
-					)}
-				</ul>
-			) : (
-				<EmptyChat />
-			)} */}
 		</main>
 	);
 };
