@@ -79,17 +79,16 @@ const Chat: FC<Props> = (props) => {
 		if (data.message.trim() === "") return; // Check for empty message
 
 		const newMessage: ChatMessage = {
-			id: Date.now().toString(),
+			id: `${Date.now().toString()}-user`,
 			text: data.message,
 			sender: "user",
 		};
 		setMessages((prevMessages) => [...prevMessages, newMessage]);
 		reset();
 
-		// Simulate bot response
 		const response = await genTheDiff(currentUrl, data.message);
 		const botMessage: ChatMessage = {
-			id: Date.now().toString(),
+			id: `${Date.now().toString()}-ai`,
 			text: response,
 			sender: "ai",
 		};
