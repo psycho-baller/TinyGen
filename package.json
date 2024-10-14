@@ -1,0 +1,81 @@
+{
+  "name": "sniptube",
+  "displayName": "SnipTube - AI powered YouTube bookmarker",
+  "version": "0.4.4",
+  "description": "Highlight, tag, annotate, and export your favorite YouTube moments with the power of AI.",
+  "author": "Rami <rami.rami@ucalgary.ca> (rami-maalouf.tech)",
+  "license": "MIT",
+  "homepage_url": "https://sniptube.vercel.app",
+  "contributors": [
+    "Rami <rami.rami@ucalgary.ca> (rami-maalouf.tech)"
+  ],
+  "scripts": {
+    "start": "next start",
+    "dev": "run-p dev:*",
+    "dev:plasmo": "plasmo dev",
+    "dev:next": "next dev --port 3000",
+    "dev:fastapi": "source .venv/bin/activate && uvicorn api.index:app --reload",
+    "dev-backend": "run-p dev:fastapi dev:next",
+    "build": "run-p build:*",
+    "build:plasmo": "plasmo build",
+    "build:next": "next build",
+    "package": "run-p package:*",
+    "package:plasmo": "plasmo package"
+  },
+  "dependencies": {
+    "@formkit/auto-animate": "^0.8.0",
+    "@plasmohq/storage": "^1.8.1",
+    "@tailwindcss/typography": "^0.5.10",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.4",
+    "get-youtube-chapters": "^2.0.0",
+    "next": "^13.5.6",
+    "next-themes": "^0.2.1",
+    "plasmo": "^0.86.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^1.14.0",
+    "webextension-polyfill-global": "0.10.1-1",
+    "youtube-caption-extractor": "^1.4.3",
+    "zustand": "^4.4.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.6",
+    "@types/chrome": "^0.0.237",
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "@types/webextension-polyfill": "^0.10.7",
+    "autoprefixer": "^10.4.16",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.31",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  },
+  "manifest": {
+    "permissions": [
+      "storage",
+      "tabs",
+      "scripting"
+    ],
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "sniptube@ramimaalouf.tech"
+      }
+    },
+    "host_permissions": [
+      "https://youtube.com/watch*",
+      "https://www.youtube.com/watch*",
+      "https://youtu.be/watch*",
+      "https://www.youtu.be/watch*",
+      "https://www.youtube-nocookie.com/watch*",
+      "https://youtube-nocookie.com/watch*",
+      "https://www.youtube.com/embed/watch*",
+      "https://youtube.com/embed/watch*",
+      "https://*.youtube.com/*",
+      "https://www.youtube-nocookie.com/embed/*"
+    ]
+  }
+}

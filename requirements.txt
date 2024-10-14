@@ -1,0 +1,8 @@
+fastapi
+openai
+langchain>=0.1
+uvicorn
+tiktoken
+python-dotenv
+langchain-community
+langchain-openai
