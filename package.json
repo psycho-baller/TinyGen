@@ -32,20 +32,24 @@
     "get-youtube-chapters": "^2.0.0",
     "next": "^13.5.6",
     "next-themes": "^0.2.1",
-    "plasmo": "^0.86.1",
+    "plasmo": "^0.89.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.53.0",
+    "react-syntax-highlighter": "^15.5.0",
     "tailwind-merge": "^1.14.0",
     "webextension-polyfill-global": "0.10.1-1",
     "youtube-caption-extractor": "^1.4.3",
     "zustand": "^4.4.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
     "@tailwindcss/forms": "^0.5.6",
     "@types/chrome": "^0.0.237",
     "@types/node": "^20.8.9",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@types/webextension-polyfill": "^0.10.7",
     "autoprefixer": "^10.4.16",
     "npm-run-all": "^4.1.5",
@@ -66,16 +70,7 @@
       }
     },
     "host_permissions": [
-      "https://youtube.com/watch*",
-      "https://www.youtube.com/watch*",
-      "https://youtu.be/watch*",
-      "https://www.youtu.be/watch*",
-      "https://www.youtube-nocookie.com/watch*",
-      "https://youtube-nocookie.com/watch*",
-      "https://www.youtube.com/embed/watch*",
-      "https://youtube.com/embed/watch*",
-      "https://*.youtube.com/*",
-      "https://www.youtube-nocookie.com/embed/*"
+      "https://github.com/*"
     ]
   }
 }
