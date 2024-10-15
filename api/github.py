@@ -46,14 +46,13 @@ class GithubFileLoader:
     def __init__(self, repo_url):
         self.repo_url = repo_url.split("github.com/")[-1]
         # extract the repo id and username
-        self.repo_id, self.username = self.repo_url.split("/")[:2]
-        print(self.repo_id, self.username)
+        self.username, self.repo_id = self.repo_url.split("/")[:2]
 
     def get_file_paths(self, branch="main"):
 
         try:
             base_url = (
-                f"{self.github_api_url}/repos/{self.repo_id}/{self.username}/git/trees/"
+                f"{self.github_api_url}/repos/{self.username}/{self.repo_id}/git/trees/"
                 f"{branch}?recursive=1"
             )
 
@@ -75,7 +74,7 @@ class GithubFileLoader:
 
     def get_file_content_by_path(self, path: str) -> str:
         try:
-            base_url = f"{self.github_api_url}/repos/{self.repo_id}/{self.username}/contents/{path}"
+            base_url = f"{self.github_api_url}/repos/{self.username}/{self.repo_id}/contents/{path}"
             response = requests.get(base_url, headers=self.headers)
             response.raise_for_status()  # This will raise an exception for 4XX and 5XX responses
             content_encoded = response.json()["content"]
