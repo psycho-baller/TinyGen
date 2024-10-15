@@ -1,6 +1,7 @@
 name: "Submit to Web Store"
 on:
   release:
+    types: [created]  # This ensures the workflow runs only when a new release is created
   workflow_dispatch:
     # inputs:
     #   version:
