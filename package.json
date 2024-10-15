@@ -1,11 +1,11 @@
 {
-  "name": "sniptube",
-  "displayName": "SnipTube - AI powered YouTube bookmarker",
+  "name": "tinygen",
+  "displayName": "TinyGen - AI powered YouTube bookmarker",
   "version": "0.4.4",
   "description": "Highlight, tag, annotate, and export your favorite YouTube moments with the power of AI.",
   "author": "Rami <rami.rami@ucalgary.ca> (rami-maalouf.tech)",
   "license": "MIT",
-  "homepage_url": "https://sniptube.vercel.app",
+  "homepage_url": "https://tiny-gen.vercel.app",
   "contributors": [
     "Rami <rami.rami@ucalgary.ca> (rami-maalouf.tech)"
   ],
@@ -66,7 +66,7 @@
     ],
     "browser_specific_settings": {
       "gecko": {
-        "id": "sniptube@ramimaalouf.tech"
+        "id": "tinygen@ramimaalouf.tech"
       }
     },
     "host_permissions": [

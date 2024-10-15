@@ -22,6 +22,7 @@ class GithubFileLoader:
         ".venv",
         "build",
         "__pycache__",
+        "assets",
     }  # Directories to exclude loading
     excluded_files = {
         "poetry.lock",
@@ -31,6 +32,8 @@ class GithubFileLoader:
         "requirements.txt",
         ".env",
         "keys.json",
+        ".gitignore",
+        "LICENSE",
     }  # Files to exclude loading
 
     @property
