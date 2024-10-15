@@ -16,9 +16,9 @@ class SummarizeFile(BaseModel):
 
 
 app = FastAPI(
-    docs_url="/api/llm/docs",
-    redoc_url="/api/llm/redoc",
-    openapi_url="/api/llm/openapi.json",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
+    openapi_url="/api/openapi.json",
 )
 
 # CORS configuration
