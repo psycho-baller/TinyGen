@@ -39,12 +39,12 @@ const Chat: FC<Props> = (props) => {
 			console.log("Response from getTheDiff:", response);
 			for (const data of response) {
 				const userMessage: ChatMessage = {
-					id: data.created_at + data.id,
+					id: `${data.created_at}-${data.id}-user`,
 					text: data.user_message,
 					sender: "user",
 				};
 				const botMessage: ChatMessage = {
-					id: data.created_at + data.id,
+					id: `${data.created_at}-${data.id}-ai`,
 					text: data.ai_response,
 					sender: "ai",
 				};
