@@ -1,6 +1,6 @@
 export const URL =
 	process.env.NODE_ENV === "production"
-		? `https://www.tiny-gen.vercel.app/api/v1`
+		? "https://www.tiny-gen.vercel.app/api/v1"
 		: "http://localhost:3000/api/v1";
 
 export const sortByOptions = [
