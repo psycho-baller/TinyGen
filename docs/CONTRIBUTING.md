@@ -8,7 +8,7 @@
 
 ## Prerequisites
 
-- [nodejs](https://nodejs.org/en/download/) (only tested with v18)
+- [nodejs](https://nodejs.org/en/download/) (only tested with v22)
 - [pnpm](https://pnpm.io/) (or npm or yarn)
 - [python3](https://www.python.org/downloads/) (and pip)
 - [Postman](https://www.postman.com/downloads/) (optional)
