@@ -5,6 +5,7 @@
   <a href="https://tiny-gen.vercel.app/chrome">Chrome/Chromium</a> |
   <a href="https://tiny-gen.vercel.app/firefox">Firefox</a> |
   <a href="https://tiny-gen.vercel.app/edge">Edge</a> |
+  <a href="https://tiny-gen.vercel.app/safari">Safari</a> |
   <a href="https://tiny-gen.vercel.app">Website</a>
 </p>
 

@@ -26,25 +26,25 @@ const nextConfig = {
     return [
       {
         source: '/chrome',
-        destination: 'https://chrome.google.com/webstore/detail/sniptube-elevate-your-you/fidajdajcfpjlbmgmpbcobkofibhkimk',
+        destination: 'https://github.com/psycho-baller/TinyGen/releases',
         permanent: false,
         basePath: false
       },
       {
         source: '/firefox',
-        destination: 'https://addons.mozilla.org/en-US/firefox/addon/sniptube/',
+        destination: 'https://github.com/psycho-baller/TinyGen/releases',
         permanent: false,
         basePath: false
       },
       {
         source: '/edge',
-        destination: 'https://microsoftedge.microsoft.com/addons/detail/sniptube-elevate-your-y/hibkflieoofejdponchkigjjklebinia',
+        destination: 'https://github.com/psycho-baller/TinyGen/releases',
         permanent: false,
         basePath: false
       },
       {
         source: '/safari',
-        destination: 'https://github.com/psycho-baller/snipTube/blob/main/docs/safari.md',
+        destination: 'https://github.com/psycho-baller/TinyGen/releases',
         permanent: false,
         basePath: false
       },
