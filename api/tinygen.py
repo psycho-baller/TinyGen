@@ -1,3 +1,4 @@
+import asyncio
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
@@ -5,8 +6,8 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers import JsonOutputParser
 
 
-from api.db import insert_to_supabase
-from api.github import GithubFileLoader
+from .db import insert_to_supabase
+from .github import GithubFileLoader
 
 from dotenv import load_dotenv
 import os
@@ -23,6 +24,7 @@ class TinyGen:
             max_tokens=4096,
             temperature=0,
             streaming=True,
+            verbose=True,
             openai_api_key=ACCESS_TOKEN,
         )
 
@@ -58,7 +60,7 @@ class TinyGen:
 
         generated_text = ""
 
-        async for event in response:
+        async for event in self.retry_operation(response):
             kind = event["event"]
             chain = event["name"]
 
@@ -70,7 +72,7 @@ class TinyGen:
                 kind == "on_chat_model_start"
                 and chain == "identify_relevant_files_chain"
             ):
-                print("##### Starting Identify Relevant Files Chain...\n\n")
+                yield str("##### Starting Identify Relevant Files Chain...\n\n")
             elif kind == "on_chat_model_start" and chain == "code_conversion_chain":
                 print("##### Starting Code Conversion Chain...\n\n")
             elif kind == "on_chat_model_start" and chain == "generate_diff_chain":
@@ -83,6 +85,25 @@ class TinyGen:
         response = insert_to_supabase(
             prompt, loader.username, loader.repo_id, generated_text
         )
+
+    async def retry_operation(self, operation, retries=3, delay=1):
+        for attempt in range(retries):
+            try:
+                # Check if the operation is an async generator
+                if hasattr(operation, "__aiter__"):
+                    # If it's an async generator, return the async generator itself
+                    async for result in operation:
+                        yield result  # Yield each result from the async generator
+                else:
+                    # Otherwise, await the operation
+                    yield await operation
+            except Exception as e:
+                print(f"Attempt {attempt + 1} failed: {e}")
+                if attempt < retries - 1:
+                    await asyncio.sleep(delay)  # Wait before retrying
+                else:
+                    print("All attempts failed.")
+                    raise  # Re-raise the last exception
 
     def summarize_files(self, repo_files):
         ############
@@ -100,8 +121,7 @@ class TinyGen:
             {file_path}
             </file_path>
 
-            Generate me a detailed summary of the purpose of this file in the context of the project.
-            Every file must have a clear and very detailed (must be minimum of 4 sentences but can be more) summary. 
+            Generate me a concise summary of the purpose of this file in the context of the project.
             It must be very clear so that even developers who just moved to this project can understand this file by analyzing the generated summary
             without additional questions.
             """
@@ -131,10 +151,10 @@ class TinyGen:
         relevant_files = get_file(relevant_file_paths["files"], self.repo_files)
         return relevant_files
 
-    def transform_conversion_chain_output(self, code_changes: dict[str, List]):
+    def transform_conversion_chain_output(self, code_changes: List[Dict]):
         original_files = []
 
-        for code_change in code_changes["code_changes"]:
+        for code_change in code_changes:
             original_file_path = code_change["original_file_path"]
             original_file = get_file(original_file_path, self.repo_files)
             original_files.append(
@@ -170,6 +190,8 @@ class TinyGen:
             ```json
             {{"files": [path/to/file, path/to/file]}}
             ```
+            
+            Use double quotes for all strings and escape any double quotes within the string with a backslash. Before submitting, ensure the json is valid!
             """
         )
 
@@ -183,9 +205,9 @@ class TinyGen:
         ############
         code_conversion_prompt = PromptTemplate.from_template(
             """
-            You are an expert at solving user issues in the code base. Given a user query defined under <user_query><user_query/>,
+            You are an expert at solving user issues in the code base. Given a user query defined under <user_query></user_query>,
             You are given the relevant files needed to solve the user's issue that he/she is having for the given repository
-            These are the relevant files given to you under <relevant_files><relevant_files>
+            These are the relevant files given to you under <relevant_files></relevant_files>
 
             <relevant_files>
             {relevant_files}
@@ -200,29 +222,27 @@ class TinyGen:
             </user_query>
 
             Return the name of the file(s) that was updated,
-            and also the updated file in a json format like this:
-            {{
-                "code_changes": [
+            and also the updated file in a json list format like this:
+            [
                     {{
-                        "original_file_path: path of original file
-                        "new_file_path": path of the new file,
-                        "updated_contents": new_file_contents,
-                        "what_changed": simple description of what was added
+                        "original_file_path": <path of original file>,
+                        "new_file_path": <path of the new file>,
+                        "updated_contents": <new_file_contents>,
+                        "what_changed": <simple description of what was added>
                     }},
                     {{
-                        "original_file_path: path of original file
-                        "new_file_path": path of the new file,
-                        "updated_contents": new_file_contents,
-                        "what_changed": simple description of what was added
+                        "original_file_path": <path of original file>,
+                        "new_file_path": <path of the new file>,
+                        "updated_contents": <new_file_contents>,
+                        "what_changed": <simple description of what was added>
                     }}
-                ]
-            }}
-            
-           
+            ]
 
             Important: Return only the json and no other text! Make sure to escape any string literals so that the json is valid!
+            For all strings, use double quotes and escape any double quotes within the string with a backslash. Before submitting, ensure the json is valid!
             """
         )
+
         code_conversion_chain = (
             code_conversion_prompt
             | self.llm.with_config({"run_name": "code_conversion_chain"})
@@ -293,9 +313,14 @@ class TinyGen:
         )
 
         identify_relevant_files = (
-            identify_relevant_files_chain | self.transform_relevant_files_chain_output
+            identify_relevant_files_chain
+            | (
+                lambda x: print("Relevant files before transformation:", x) or x
+            )  # Print before transformation
+            | self.transform_relevant_files_chain_output
         )
 
+        print("relevant files: ", identify_relevant_files)
         convert_code = code_conversion_chain | self.transform_conversion_chain_output
 
         final_chain = (
