@@ -1,7 +1,7 @@
 {
   "name": "tinygen",
   "displayName": "TinyGen - The Open Source AI-Powered Browser Code Editor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Speed up your development by integrating AI the correct way 🚀\n\nAfraid of switching editors? No need, TinyGen is integrated right into your browser so you'll feel right at home",
   "author": "Rami <rami.rami@ucalgary.ca> (rami-maalouf.tech)",
   "license": "MIT",
