@@ -6,8 +6,9 @@
 - [pnpm](https://pnpm.io/) (or npm or yarn)
 - [python3](https://www.python.org/downloads/) (and pip)
 - [Postman](https://www.postman.com/downloads/) (optional)
-  - You can run the postman collection in [this page](https://rami-maalouf.postman.co/workspace/Team-Workspace~c0c74318-5842-4cca-8c8b-00f362d73874/collection/23796705-0039ab80-0173-470b-99c0-eb11a2c35180?action=share&creator=23796705)
-  - You can also find the postman json collection here: [TinyGen.postman_collection.json](./assets/TinyGen.postman_collection.json) or 
+  - You can also find the postman json collection here: [TinyGen.postman_collection.json](./assets/TinyGen.postman_collection.json)
+  - You can run the postman collection in [this page](https://rami-maalouf.postman.co/workspace/Team-Workspace~c0c74318-5842-4cca-8c8b-00f362d73874/collection/23796705-0b576e90-c2c1-4875-983f-1f6839012fb0?action=share&creator=23796705)
+    - Alternatively, you can run the fastAPI-generated openapi docs from [this page](https://tiny-gen.vercel.app/api/docs)
 
 - run `pnpm i` in the root folder to install all the node dependencies.
 - create a virtual environment with `python3 -m venv .venv` and activate it with `source venv/bin/activate` then run `pip install -r requirements.txt` to install all the python dependencies.
@@ -36,10 +37,6 @@ To run the browser extension, run `pnpm dev:plasmo --target=edge-mv3` in the roo
 To also run the backend alongside the extension, run `pnpm dev:backend` in the root folder as well (in another terminal), this will start the Next.js and the FastAPI server.
 
 You can also run each backend separately by running `pnpm dev:next` and `pnpm dev:fastapi` in the root folder.
-
-### Safari Extension
-
-Visit [this page](./safari.md) to learn how to run the extension in safari.
 
 ## Production
 

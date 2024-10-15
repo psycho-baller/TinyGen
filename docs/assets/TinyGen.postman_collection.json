@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "0b576e90-c2c1-4875-983f-1f6839012fb0",
+		"name": "TinyGen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23796705",
+		"_collection_link": "https://rami-maalouf.postman.co/workspace/Team-Workspace~c0c74318-5842-4cca-8c8b-00f362d73874/collection/23796705-0b576e90-c2c1-4875-983f-1f6839012fb0?action=share&source=collection_link&creator=23796705"
+	},
+	"item": [
+		{
+			"name": "local (dev)",
+			"item": [
+				{
+					"name": "Healthchecker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/healthchecker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"healthchecker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Diff",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"repoUrl\": \"https://github.com/jayhack/llm.sh\",\n    \"prompt\": \"The program doesn't output anything in windows 10.\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>llm list files in current dir; windows\\n/ Querying GPT-3200\\n───────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n│ File: temp.sh\\n───────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n1   │\\n2   │ dir\\n3   │ ```\\n───────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n>> Do you want to run this program? [Y/n] y\\nRunning...\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>\\nNotice that there is no output. Is this supposed to work on Windows also?\\nAlso it might be great if the script detects which OS or shell I'm using and try to use the appropriate command e.g. dir instead of ls because I don't want to be adding windows after every prompt.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/diff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"diff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All messages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"repoUrl\": \"https://github.com/jayhack/llm.sh\",\n    \"prompt\": \"The program doesn't output anything in windows 10.\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>llm list files in current dir; windows\\n/ Querying GPT-3200\\n───────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n│ File: temp.sh\\n───────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n1   │\\n2   │ dir\\n3   │ ```\\n───────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n>> Do you want to run this program? [Y/n] y\\nRunning...\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>\\nNotice that there is no output. Is this supposed to work on Windows also?\\nAlso it might be great if the script detects which OS or shell I'm using and try to use the appropriate command e.g. dir instead of ls because I don't want to be adding windows after every prompt.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/diff/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"diff",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Repo Messages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"repoUrl\": \"https://github.com/jayhack/llm.sh\",\n    \"prompt\": \"The program doesn't output anything in windows 10.\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>llm list files in current dir; windows\\n/ Querying GPT-3200\\n───────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n│ File: temp.sh\\n───────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n1   │\\n2   │ dir\\n3   │ ```\\n───────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n>> Do you want to run this program? [Y/n] y\\nRunning...\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>\\nNotice that there is no output. Is this supposed to work on Windows also?\\nAlso it might be great if the script detects which OS or shell I'm using and try to use the appropriate command e.g. dir instead of ls because I don't want to be adding windows after every prompt.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/diff?github_username=jayhack&github_repo_id=llm.sh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"diff"
+							],
+							"query": [
+								{
+									"key": "github_username",
+									"value": "jayhack"
+								},
+								{
+									"key": "github_repo_id",
+									"value": "llm.sh"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prod",
+			"item": [
+				{
+					"name": "Healthchecker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://tiny-gen.vercel.app/api/healthchecker",
+							"protocol": "https",
+							"host": [
+								"tiny-gen",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"healthchecker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Diff",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"repoUrl\": \"https://github.com/psycho-baller/Tic-Tac-Toe\",\n    \"prompt\": \"please tell me how to get started in the readme\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://tiny-gen.vercel.app/api/v1/diff",
+							"protocol": "https",
+							"host": [
+								"tiny-gen",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"v1",
+								"diff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Messages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"repoUrl\": \"https://github.com/jayhack/llm.sh\",\n    \"prompt\": \"The program doesn't output anything in windows 10.\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>llm list files in current dir; windows\\n/ Querying GPT-3200\\n───────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n│ File: temp.sh\\n───────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n1   │\\n2   │ dir\\n3   │ ```\\n───────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n>> Do you want to run this program? [Y/n] y\\nRunning...\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>\\nNotice that there is no output. Is this supposed to work on Windows also?\\nAlso it might be great if the script detects which OS or shell I'm using and try to use the appropriate command e.g. dir instead of ls because I don't want to be adding windows after every prompt.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://tiny-gen.vercel.app/api/v1/diff/all",
+							"protocol": "https",
+							"host": [
+								"tiny-gen",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"v1",
+								"diff",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Repo Messages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"repoUrl\": \"https://github.com/jayhack/llm.sh\",\n    \"prompt\": \"The program doesn't output anything in windows 10.\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>llm list files in current dir; windows\\n/ Querying GPT-3200\\n───────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n│ File: temp.sh\\n───────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n1   │\\n2   │ dir\\n3   │ ```\\n───────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────\\n>> Do you want to run this program? [Y/n] y\\nRunning...\\n(base) C:\\\\Users\\\\off99\\\\Documents\\\\Code\\\\>\\nNotice that there is no output. Is this supposed to work on Windows also?\\nAlso it might be great if the script detects which OS or shell I'm using and try to use the appropriate command e.g. dir instead of ls because I don't want to be adding windows after every prompt.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://tiny-gen.vercel.app/api/v1/diff/all?github_username=jayhack&github_repo_id=llm.sh",
+							"protocol": "https",
+							"host": [
+								"tiny-gen",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"v1",
+								"diff",
+								"all"
+							],
+							"query": [
+								{
+									"key": "github_username",
+									"value": "jayhack"
+								},
+								{
+									"key": "github_repo_id",
+									"value": "llm.sh"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
