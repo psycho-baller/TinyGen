@@ -9,28 +9,28 @@ importers:
   .:
     dependencies:
       '@formkit/auto-animate':
-        specifier: ^0.8.0
+        specifier: ^0.8.2
         version: 0.8.2
       '@plasmohq/storage':
-        specifier: ^1.8.1
+        specifier: ^1.12.0
         version: 1.12.0(react@18.3.1)
       '@tailwindcss/typography':
-        specifier: ^0.5.10
+        specifier: ^0.5.15
         version: 0.5.15(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.35(@swc/helpers@0.5.13))(@types/node@20.16.11)(typescript@5.6.3)))
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
       clsx:
-        specifier: ^2.0.0
+        specifier: ^2.1.1
         version: 2.1.1
       framer-motion:
-        specifier: ^10.16.4
+        specifier: ^10.18.0
         version: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       get-youtube-chapters:
         specifier: ^2.0.0
         version: 2.0.0
       next:
-        specifier: ^13.5.6
+        specifier: ^13.5.7
         version: 13.5.7(@babel/core@7.25.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.5)
       next-themes:
         specifier: ^0.2.1
@@ -39,10 +39,10 @@ importers:
         specifier: ^0.89.3
         version: 0.89.3(@swc/core@1.7.35(@swc/helpers@0.5.13))(@swc/helpers@0.5.13)(lodash@4.17.21)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@swc/core@1.7.35(@swc/helpers@0.5.13))(@types/node@20.16.11)(typescript@5.6.3))
       react:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-hook-form:
         specifier: ^7.53.0
@@ -60,26 +60,26 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3(@swc/core@1.7.35(@swc/helpers@0.5.13))(@types/node@20.16.11)
       zustand:
-        specifier: ^4.4.4
+        specifier: ^4.5.5
         version: 4.5.5(@types/react@18.3.11)(react@18.3.1)
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.9.3
         version: 1.9.3
       '@tailwindcss/forms':
-        specifier: ^0.5.6
+        specifier: ^0.5.9
         version: 0.5.9(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.35(@swc/helpers@0.5.13))(@types/node@20.16.11)(typescript@5.6.3)))
       '@types/chrome':
         specifier: ^0.0.237
         version: 0.0.237
       '@types/node':
-        specifier: ^20.8.9
+        specifier: ^20.16.11
         version: 20.16.11
       '@types/react':
-        specifier: ^18.2.33
+        specifier: ^18.3.11
         version: 18.3.11
       '@types/react-dom':
-        specifier: ^18.2.14
+        specifier: ^18.3.1
         version: 18.3.1
       '@types/react-syntax-highlighter':
         specifier: ^15.5.13
@@ -88,22 +88,22 @@ importers:
         specifier: ^0.10.7
         version: 0.10.7
       autoprefixer:
-        specifier: ^10.4.16
+        specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
       postcss:
-        specifier: ^8.4.31
+        specifier: ^8.4.47
         version: 8.4.47
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
       tailwindcss:
-        specifier: ^3.3.5
+        specifier: ^3.4.13
         version: 3.4.13(ts-node@10.9.2(@swc/core@1.7.35(@swc/helpers@0.5.13))(@types/node@20.16.11)(typescript@5.6.3))
       typescript:
-        specifier: ^5.2.2
+        specifier: ^5.6.3
         version: 5.6.3
 
 packages:
@@ -2108,8 +2108,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  electron-to-chromium@1.5.36:
-    resolution: {integrity: sha512-HYTX8tKge/VNp6FGO+f/uVDmUkq+cEfcxYhKf15Akc4M5yxt5YmorwlAitKWjWhWQnKcDRBAQKXkhqqXMqcrjw==}
+  electron-to-chromium@1.5.38:
+    resolution: {integrity: sha512-VbeVexmZ1IFh+5EfrYz1I0HTzHVIlJa112UEWhciPyeOcKJGeTv6N8WnG4wsQB81DGCaVEGhpSb6o6a8WYFXXg==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3009,8 +3009,8 @@ packages:
   nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
 
-  node-abi@3.68.0:
-    resolution: {integrity: sha512-7vbj10trelExNjFSBm5kTvZXXa7pZyKWx9RCKIyqe6I9Ev3IzGpQoqBP3a+cOdxY+pWj6VkP28n/2wWysBHD/A==}
+  node-abi@3.69.0:
+    resolution: {integrity: sha512-H/k5/+HXto3xXTcqTIl3DAWaelvNVYSoZ2IJVDFJEoYyZYcoRhcRy+1WMMhsKAG+UU7wSCI3DRurJ0DxFMXvyg==}
     engines: {node: '>=10'}
 
   node-addon-api@4.3.0:
@@ -5892,14 +5892,14 @@ snapshots:
   browserslist@4.22.1:
     dependencies:
       caniuse-lite: 1.0.30001668
-      electron-to-chromium: 1.5.36
+      electron-to-chromium: 1.5.38
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.22.1)
 
   browserslist@4.24.0:
     dependencies:
       caniuse-lite: 1.0.30001668
-      electron-to-chromium: 1.5.36
+      electron-to-chromium: 1.5.38
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
 
@@ -6223,7 +6223,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  electron-to-chromium@1.5.36: {}
+  electron-to-chromium@1.5.38: {}
 
   emoji-regex@8.0.0: {}
 
@@ -7144,7 +7144,7 @@ snapshots:
 
   nice-try@1.0.5: {}
 
-  node-abi@3.68.0:
+  node-abi@3.69.0:
     dependencies:
       semver: 7.5.4
 
@@ -7486,7 +7486,7 @@ snapshots:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.68.0
+      node-abi: 3.69.0
       pump: 3.0.2
       rc: 1.2.8
       simple-get: 4.0.1

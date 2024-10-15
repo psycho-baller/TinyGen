@@ -55,9 +55,10 @@ async def gen_diff(input: GenDiffInput):
     repo_url = input.repoUrl
 
     tinygen = TinyGen()
-    response = tinygen.stream(repo_url=repo_url, prompt=prompt)
+    response = await tinygen.call(repo_url=repo_url, prompt=prompt)
 
-    return StreamingResponse(response, media_type="text/event-stream")
+    # return StreamingResponse(response, media_type="text/event-stream")
+    return JSONResponse({"diff": response})
 
 
 @app.get("/api/v1/diff/all")

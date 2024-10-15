@@ -14,7 +14,7 @@ import os
 from typing import List, Union, Dict
 
 load_dotenv()
-ACCESS_TOKEN = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 class TinyGen:
@@ -25,8 +25,42 @@ class TinyGen:
             temperature=0,
             streaming=True,
             verbose=True,
-            openai_api_key=ACCESS_TOKEN,
+            openai_api_key=OPENAI_API_KEY,
         )
+
+    async def call(self, repo_url, prompt):
+        loader = GithubFileLoader(repo_url)
+
+        print("Loading files from the repository...\n")
+        files = loader.load()
+        print("Files loaded successfully!\n\n")
+        self.repo_files = []
+        for file in files:
+            self.repo_files.append(file)
+        print("Files loaded successfully!\n\n")
+        self.prompt = prompt
+
+        # Summarize files
+        print(
+            f"Summarizing files...\nMaking a batch call to summarize file chain for {len(self.repo_files)} files...\n"
+        )
+        self.repo_files_with_summaries = self.summarize_files(self.repo_files)
+        print("Done summarizing all files!\n\n")
+
+        # Initialize rest of the chains
+        tinygen_chain = self.initialize_and_combine_chains(self.repo_files, self.prompt)
+
+        diff = tinygen_chain.invoke(
+            {
+                "files_list": self.repo_files_with_summaries,
+                "user_query": self.prompt,
+            }
+        )
+
+        # Insert Data to Supabase after processing is finished
+        insert_to_supabase(prompt, loader.username, loader.repo_id, diff)
+
+        return diff
 
     async def stream(self, repo_url, prompt):
 
@@ -42,14 +76,11 @@ class TinyGen:
         self.prompt = prompt
 
         # summarize files
-        print(
-            f"Summarizing files...\nMaking a batch call to summarize file chain for {len(self.repo_files)} files...\n"
-        )
         self.repo_files_with_summaries = self.summarize_files(self.repo_files)
         print("Done summarizing all files!\n\n")
 
         # Initialize rest of the chains
-        # Four Chain = identify relevant files -> code conversion -> generate diff -> reflection on diff)
+        # Four Chains: identify relevant files -> modify code -> generate diff -> reflection on diff)
         tinygen_chain = self.initialize_and_combine_chains(self.repo_files, self.prompt)
 
         response = tinygen_chain.astream_events(
@@ -72,7 +103,7 @@ class TinyGen:
                 kind == "on_chat_model_start"
                 and chain == "identify_relevant_files_chain"
             ):
-                yield str("##### Starting Identify Relevant Files Chain...\n\n")
+                print("##### Starting Identify Relevant Files Chain...\n\n")
             elif kind == "on_chat_model_start" and chain == "code_conversion_chain":
                 print("##### Starting Code Conversion Chain...\n\n")
             elif kind == "on_chat_model_start" and chain == "generate_diff_chain":
@@ -153,6 +184,8 @@ class TinyGen:
 
     def transform_conversion_chain_output(self, code_changes: List[Dict]):
         original_files = []
+
+        print("code changes: ", code_changes)
 
         for code_change in code_changes:
             original_file_path = code_change["original_file_path"]
@@ -320,7 +353,6 @@ class TinyGen:
             | self.transform_relevant_files_chain_output
         )
 
-        print("relevant files: ", identify_relevant_files)
         convert_code = code_conversion_chain | self.transform_conversion_chain_output
 
         final_chain = (
@@ -364,7 +396,7 @@ def get_file(file_paths: Union[List[str], str], repo_files: List[Dict[str, str]]
         matched_files = [f for f in repo_files if f["file_path"] == file_path]
         if matched_files:
             # Assuming only one match should be found, take the first one.
-            print("file found!")
+            print(f"{file_path} found!")
             file_contents.append(matched_files[0])
         else:
             # If the file isn't found, append an entry with an empty contents.

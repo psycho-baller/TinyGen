@@ -93,6 +93,8 @@ class GithubFileLoader:
         )
 
     def load(self):
+        documents = []
+
         files = self.get_file_paths()
         for file in files:
 
@@ -101,4 +103,5 @@ class GithubFileLoader:
                 continue
 
             content = self.get_file_content_by_path(file["path"])
-            yield {"file_path": file["path"], "contents": content}
+            documents.append({"file_path": file["path"], "contents": content})
+        return documents
