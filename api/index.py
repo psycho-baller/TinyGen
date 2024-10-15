@@ -26,14 +26,19 @@ origins = [
     "http://localhost:3000",
     "https://tiny-gen.vercel.app",
     "chrome-extension://okiflhgmoemcbijlcfhihgddnomeigle",
+    "chrome-extension://jciifdnfancohlpbnechegapliahanid",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Allow all origins for testing
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["content-type"],
+    allow_methods=["*"],  # Allow all methods for testing
+    allow_headers=["*"],  # Allow all headers for testing
+    # allow_origins=origins,
+    # allow_credentials=True,
+    # allow_methods=["GET", "POST", "OPTIONS"],
+    # allow_headers=["content-type"],
 )
 
 
@@ -109,3 +114,8 @@ async def get_diff(github_username: str = None, github_repo_id: str = None):
             {"error": "An error occurred while fetching messages."},
             status_code=500,
         )
+
+
+@app.options("/api/v1/diff")
+async def options_diff():
+    return JSONResponse(status_code=200)
