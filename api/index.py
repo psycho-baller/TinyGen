@@ -23,9 +23,8 @@ app = FastAPI(
 
 # CORS configuration
 origins = [
-    "https://www.youtube.com",
     "http://localhost:3000",
-    "https://www.tiny-gen.vercel.app",
+    "https://tiny-gen.vercel.app",
     "chrome-extension://okiflhgmoemcbijlcfhihgddnomeigle",
 ]
 

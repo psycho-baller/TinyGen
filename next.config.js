@@ -16,7 +16,9 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://127.0.0.1:8000/api/:path*", // Proxy to Backend
+        destination: process.env.NODE_ENV === 'production'
+          ? 'https://tinygen-g3ra.onrender.com/api/:path*' // Replace with your production URL
+          : 'http://127.0.0.1:8000/api/:path*', // Proxy to Backend in development
       },
     ];
   },
@@ -51,7 +53,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/api/llm/:path*",
+        source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "https://www.github.com" },
