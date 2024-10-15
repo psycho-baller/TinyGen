@@ -50,19 +50,19 @@ const nextConfig = {
       },
     ]
   },
-  async headers() {
-    return [
-      {
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: process.env.NODE_ENV === 'production' ? "chrome-extension://jciifdnfancohlpbnechegapliahanid" : "chrome-extension://okiflhgmoemcbijlcfhihgddnomeigle" },
-          { key: "Access-Control-Allow-Methods", value: "GET, POST, OPTIONS" },
-          { key: "Access-Control-Allow-Headers", value: "Content-Type" },
-        ]
-      }
-    ]
-  }
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/api/:path*",
+  //       headers: [
+  //         { key: "Access-Control-Allow-Credentials", value: "true" },
+  //         { key: "Access-Control-Allow-Origin", value: process.env.NODE_ENV === 'production' ? "chrome-extension://jciifdnfancohlpbnechegapliahanid" : "chrome-extension://okiflhgmoemcbijlcfhihgddnomeigle" },
+  //         { key: "Access-Control-Allow-Methods", value: "GET, POST, OPTIONS" },
+  //         { key: "Access-Control-Allow-Headers", value: "Content-Type" },
+  //       ]
+  //     }
+  //   ]
+  // }
 };
 
 module.exports = nextConfig;
