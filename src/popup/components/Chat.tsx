@@ -34,6 +34,7 @@ const Chat: FC<Props> = (props) => {
 	useEffect(() => {
 		const githubUsername = currentUrl.split("/")[3];
 		const githubRepoId = currentUrl.split("/")[4];
+		if (!githubUsername || !githubRepoId) return;
 		getTheDiff(githubUsername, githubRepoId).then((response) => {
 			console.log("Response from getTheDiff:", response);
 			for (const data of response) {
@@ -54,7 +55,7 @@ const Chat: FC<Props> = (props) => {
 				]);
 			}
 		});
-	}, []);
+	}, [currentUrl]);
 
 	const sendMessage: SubmitHandler<FormInputs> = async (data) => {
 		console.log("Form data:", data);
