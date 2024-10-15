@@ -116,6 +116,6 @@ async def get_diff(github_username: str = None, github_repo_id: str = None):
         )
 
 
-@app.options("/api/v1/diff")
-async def options_diff():
-    return JSONResponse(status_code=200)
+# @app.options("/api/v1/diff")
+# async def options_diff():
+#     return JSONResponse(status_code=200)

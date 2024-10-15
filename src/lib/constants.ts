@@ -1,7 +1,7 @@
 export const URL =
 	process.env.NODE_ENV === "production"
-		? "https://tiny-gen.vercel.app/api/v1"
-		: "http://localhost:3000/api/v1";
+		? "https://tinygen-g3ra.onrender.com/api/v1"
+		: "http://127.0.0.1:8000/api/v1";
 
 export const sortByOptions = [
 	"Newest",

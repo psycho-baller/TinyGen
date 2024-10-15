@@ -6,7 +6,6 @@ type DiffAPIResponse = {
 export const genTheDiff = async (repoUrl: string, prompt: string) => {
 	try {
 		const res = await fetch(`${URL}/diff`, {
-			// mode: "no-cors",
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -29,7 +28,7 @@ export const genTheDiff = async (repoUrl: string, prompt: string) => {
 		// 		if (done) break;
 		// 		result += decoder.decode(value, { stream: true });
 		// 		// Process the streamed data as needed
-		// 		console.log(result); // You can update your UI or state here
+		// 		console.log(result);
 		// 	}
 		// }
 		// localStorage.setItem(videoId, JSON.stringify(data));
