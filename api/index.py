@@ -1,5 +1,5 @@
-from .tinygen import TinyGen
-from .db import get_all_messages
+from tinygen import TinyGen
+from db import get_all_messages
 
 from fastapi import FastAPI
 from pydantic import BaseModel

@@ -6,8 +6,8 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers import JsonOutputParser
 
 
-from .db import insert_to_supabase
-from .github import GithubFileLoader
+from db import insert_to_supabase
+from github import GithubFileLoader
 
 from dotenv import load_dotenv
 import os
