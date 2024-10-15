@@ -1,8 +1,12 @@
 import { URL } from "./constants";
 
+type DiffAPIResponse = {
+	diff: string;
+};
 export const genTheDiff = async (repoUrl: string, prompt: string) => {
 	try {
 		const res = await fetch(`${URL}/diff`, {
+			// mode: "no-cors",
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -12,21 +16,22 @@ export const genTheDiff = async (repoUrl: string, prompt: string) => {
 		if (!res.ok) {
 			throw new Error(`${res.status}`);
 		}
-		// const data = (await res.json()) as DiffAPIResponse;
+		const data = (await res.json()) as DiffAPIResponse;
+		const result = data.diff;
 		// Handle streaming response
-		const reader = res.body?.getReader();
-		const decoder = new TextDecoder("utf-8");
-		let result = "";
+		// const reader = res.body?.getReader();
+		// const decoder = new TextDecoder("utf-8");
+		// let result = "";
 
-		if (reader) {
-			while (true) {
-				const { done, value } = await reader.read();
-				if (done) break;
-				result += decoder.decode(value, { stream: true });
-				// Process the streamed data as needed
-				console.log(result); // You can update your UI or state here
-			}
-		}
+		// if (reader) {
+		// 	while (true) {
+		// 		const { done, value } = await reader.read();
+		// 		if (done) break;
+		// 		result += decoder.decode(value, { stream: true });
+		// 		// Process the streamed data as needed
+		// 		console.log(result); // You can update your UI or state here
+		// 	}
+		// }
 		// localStorage.setItem(videoId, JSON.stringify(data));
 		return result;
 	} catch (e) {
@@ -59,6 +64,7 @@ export const getTheDiff = async (
 			throw new Error(`${res.status}`);
 		}
 		const data = (await res.json()) as { data: SupabaseData[] };
+		console.log("Data from getTheDiff:", data);
 		return data.data;
 	} catch (e) {
 		console.log("error", e);
