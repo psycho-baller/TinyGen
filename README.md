@@ -18,7 +18,7 @@ Please see [docs/CONTRIBUTING.md](/docs/CONTRIBUTING.md) to get started.
 
 ## 🚀 Tech Stack
 
-- ✅ **Bootstrapping**: A mix of [Nextjs + FastAPI](https://github.com/psycho-baller/nextjs-and-fastapi-backend) and [Plasmo's Nextjs starter](https://github.com/PlasmoHQ/examples/tree/main/with-nextjs)
+- ✅ **Bootstrapping**: A mix of [Nextjs + FastAPI](https://github.com/psycho-baller/nextjs-and-fastapi-backend) and [Plasmo's Nextjs starter](https://github.com/PlasmoHQ/examples/tree/main/with-nextjs) and my own browser extension [SnipTube](https://github.com/psycho-baller/sniptube)
 - ✅ **Frameworks**:
   - [Nextjs 13 + Typescript](https://nextjs.org/) for the marketing website and just making it possible to connect all these different technologies together.
   - [FastAPI](https://fastapi.tiangolo.com/) for the rest of the API endpoints (the ones that involve AI)
