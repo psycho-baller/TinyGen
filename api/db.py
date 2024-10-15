@@ -30,3 +30,16 @@ def insert_to_supabase(
 def get_all_messages():
     response = supabase.table("messages").select("*").execute()
     return json.loads(response.model_dump_json())
+
+
+def get_messages_by_github_username_and_repo_id(
+    github_username: str, github_repo_id: str
+):
+    response = (
+        supabase.table("messages")
+        .select("*")
+        .eq("github_username", github_username)
+        .eq("github_repo_id", github_repo_id)
+        .execute()
+    )
+    return json.loads(response.model_dump_json())

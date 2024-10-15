@@ -32,7 +32,9 @@ const Chat: FC<Props> = (props) => {
 	const { register, handleSubmit, reset } = useForm<FormInputs>();
 
 	useEffect(() => {
-		getTheDiff().then((response) => {
+		const githubUsername = currentUrl.split("/")[3];
+		const githubRepoId = currentUrl.split("/")[4];
+		getTheDiff(githubUsername, githubRepoId).then((response) => {
 			console.log("Response from getTheDiff:", response);
 			for (const data of response) {
 				const userMessage: ChatMessage = {

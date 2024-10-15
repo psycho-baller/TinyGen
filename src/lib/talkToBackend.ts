@@ -44,11 +44,17 @@ type SupabaseData = {
 	created_at: string;
 };
 
-export const getTheDiff = async () => {
+export const getTheDiff = async (
+	githubUsername: string,
+	githubRepoId: string,
+) => {
 	try {
-		const res = await fetch(`${URL}/diff`, {
-			method: "GET",
-		});
+		const res = await fetch(
+			`${URL}/diff?github_username=${githubUsername}&github_repo_id=${githubRepoId}`,
+			{
+				method: "GET",
+			},
+		);
 		if (!res.ok) {
 			throw new Error(`${res.status}`);
 		}
