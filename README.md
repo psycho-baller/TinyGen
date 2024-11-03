@@ -9,8 +9,16 @@
   <a href="https://tiny-gen.vercel.app">Website</a>
 </p>
 
+<a href="https://github.com/user-attachments/assets/fdabff57-411b-41f7-89a3-6fcdec355e56">
+    <img src="https://github.com/user-attachments/assets/fdabff57-411b-41f7-89a3-6fcdec355e56" alt="Image Description">
+</a>
+Livestream of me building it⬆️: https://youtube.com/live/HPbsZf7cPfg
+
+Demo video of what it does: https://youtu.be/IQEBde-IU1I
+
 🤹🏼‍♂️ Hours spent code juggling this project:
-<a href="https://wakatime.com/badge/user/33addb7e-f5e6-470b-a55b-0a8babc62ebb/project/7432176a-d08e-48bd-96fb-6cba5c9f4fa2"><img src="https://wakatime.com/badge/user/33addb7e-f5e6-470b-a55b-0a8babc62ebb/project/7432176a-d08e-48bd-96fb-6cba5c9f4fa2.svg" alt="wakatime"></a>
+<a href="https://wakatime.com/badge/user/33addb7e-f5e6-470b-a55b-0a8babc62ebb/project/4895d1e5-9dcf-4854-9994-55a6fefcb6e5"><img src="https://wakatime.com/badge/user/33addb7e-f5e6-470b-a55b-0a8babc62ebb/project/4895d1e5-9dcf-4854-9994-55a6fefcb6e5.svg" alt="wakatime"></a>
+
 
 ## 🤝 Contributing
 
@@ -18,7 +26,7 @@ Please see [docs/CONTRIBUTING.md](/docs/CONTRIBUTING.md) to get started.
 
 ## 🚀 Tech Stack
 
-- ✅ **Bootstrapping**: A mix of [Nextjs + FastAPI](https://github.com/psycho-baller/nextjs-and-fastapi-backend) and [Plasmo's Nextjs starter](https://github.com/PlasmoHQ/examples/tree/main/with-nextjs) and my own browser extension [SnipTube](https://github.com/psycho-baller/sniptube)
+- ✅ **Bootstrapping**: A mix of my [Nextjs + FastAPI starter](https://github.com/psycho-baller/nextjs-and-fastapi-backend) and [Plasmo's Nextjs starter](https://github.com/PlasmoHQ/examples/tree/main/with-nextjs) and my own browser extension [SnipTube](https://github.com/psycho-baller/sniptube)
 - ✅ **Frameworks**:
   - [Nextjs 13 + Typescript](https://nextjs.org/) for the marketing website and just making it possible to connect all these different technologies together.
   - [FastAPI](https://fastapi.tiangolo.com/) for the rest of the API endpoints (the ones that involve AI)
